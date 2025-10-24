@@ -1,0 +1,95 @@
+import zipfile
+import os
+
+# File structure
+zip_filename = '/mnt/data/RoshanFood_OrderForm.zip'
+folder_name = 'RoshanFood_OrderForm'
+
+# Create folder structure
+os.makedirs(f'/mnt/data/{folder_name}/images', exist_ok=True)
+
+# index.html content (simplified, green theme + select all + Google Sheets integration placeholder)
+index_html_content = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roshan Food - Order Now</title>
+<style>
+/* Simplified green theme styles */
+body {font-family: 'Poppins', sans-serif; background-color:#f0fff4; margin:0;}
+header {background:linear-gradient(90deg,#2ecc71,#27ae60);color:white;text-align:center;padding:20px;}
+h1 {margin:0;}
+section {padding:20px; max-width:900px; margin:auto;}
+.product-row {display:flex; justify-content:space-between; margin-bottom:10px;}
+input[type="number"]{width:60px;}
+button{background-color:#27ae60;color:white;border:none;padding:10px;border-radius:5px;cursor:pointer;}
+</style>
+</head>
+<body>
+<header>
+<h1>Roshan Food</h1>
+<p>Contact: 7037829170</p>
+</header>
+<section>
+<h2>Place Your Order</h2>
+<form id="orderForm">
+<input type="text" name="name" placeholder="Your Name" required>
+<input type="tel" name="phone" placeholder="Phone Number" required>
+<textarea name="address" placeholder="Address" rows="2" required></textarea>
+<button type="button" id="selectAllBtn">Select All / Unselect All</button>
+<div class="product-row"><label><input type="checkbox" name="product" value="Motu Patlu"> Motu Patlu (₹400)</label><input type="number" name="quantity_Motu_Patlu" value="0" min="0"></div>
+<div class="product-row"><label><input type="checkbox" name="product" value="Zoo"> Zoo (₹400)</label><input type="number" name="quantity_Zoo" value="0" min="0"></div>
+<!-- Add remaining 15 products similarly -->
+<button type="submit">Submit Order</button>
+</form>
+</section>
+<script>
+// Select All functionality
+let allSelected = false;
+document.getElementById('selectAllBtn').addEventListener('click',()=>{
+const checkboxes=document.querySelectorAll('input[name="product"]');
+allSelected=!allSelected;
+checkboxes.forEach(cb=>cb.checked=allSelected);
+});
+// Form submit placeholder for Google Sheets integration
+document.getElementById('orderForm').addEventListener('submit',function(e){
+e.preventDefault();
+alert('Order submitted! Google Sheets integration placeholder.');
+this.reset();
+});
+</script>
+</body>
+</html>
+"""
+
+# Instructions.txt content
+instructions_content = """
+Instructions to use Roshan Food Order Form:
+
+1. Extract the ZIP file.
+2. Open 'index.html' in a browser to test locally.
+3. To host online:
+   - Create a GitHub repository.
+   - Upload all files and folders from the extracted ZIP.
+   - Enable GitHub Pages in repository settings.
+   - Access your live order form via the generated link.
+4. To integrate Google Sheets for automatic order saving, replace the placeholder JS with your Google Apps Script Web App URL.
+"""
+
+# Write files
+with open(f'/mnt/data/{folder_name}/index.html','w',encoding='utf-8') as f:
+    f.write(index_html_content)
+
+with open(f'/mnt/data/{folder_name}/Instructions.txt','w',encoding='utf-8') as f:
+    f.write(instructions_content)
+
+# Create ZIP
+with zipfile.ZipFile(zip_filename,'w',zipfile.ZIP_DEFLATED) as zipf:
+    for root, dirs, files in os.walk(f'/mnt/data/{folder_name}'):
+        for file in files:
+            filepath=os.path.join(root,file)
+            arcname=os.path.relpath(filepath,f'/mnt/data/{folder_name}')
+            zipf.write(filepath,arcname)
+
+zip_filename
