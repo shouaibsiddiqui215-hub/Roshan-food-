@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roshan Food - Order Now</title>
+<style>
+    * { box-sizing: border-box; margin:0; padding:0;}
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f0fff4;
+        color: #333;
+    }
+    a { text-decoration:none; color:inherit;}
+
+    header {
+        background: linear-gradient(90deg,#2ecc71,#27ae60);
+        color:white;
+        padding:25px 0;
+        text-align:center;
+        box-shadow:0 4px 6px rgba(0,0,0,0.1);
+    }
+    header h1 {font-size:2.5rem; letter-spacing:1px;}
+    header p {margin-top:5px; font-weight:500;}
+
+    nav{
+        display:flex; justify-content:center; background-color:#27ae60;
+        padding:12px 0; gap:30px; font-weight:600; font-size:1.1rem;
+        box-shadow:0 2px 4px rgba(0,0,0,0.1);
+    }
+    nav a:hover {color:#e0f7e9; text-shadow:1px 1px 2px rgba(0,0,0,0.2);}
+
+    section{padding:60px 20px; max-width:1000px;margin:auto;}
+    section h2{text-align:center;margin-bottom:40px;font-size:2rem;color:#27ae60;position:relative;}
+    section h2::after{
+        content:''; display:block; width:60px; height:3px; background:#2ecc71; margin:10px auto 0; border-radius:2px;
+    }
+
+    .items{
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+        gap:20px;
+    }
+    .item{
+        background:#fff;
+        padding:20px;
+        border-radius:12px;
+        box-shadow:0 4px 8px rgba(0,0,0,0.1);
+        text-align:center;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .item:hover{
+        transform:translateY(-5px);
+        box-shadow:0 8px 15px rgba(0,0,0,0.15);
+    }
+    .item h3{margin-bottom:10px;font-size:1.2rem;color:#27ae60;}
+    .item p{font-weight:600;color:#555;}
+
+    form{
+        background:#fff;
+        padding:25px;
+        border-radius:12px;
+        box-shadow:0 6px 15px rgba(0,0,0,0.1);
+        display:flex;
+        flex-direction:column;
+        gap:15px;
+    }
+    input, textarea, select{
+        padding:12px;
+        border-radius:8px;
+        border:1px solid #b2d8b2;
+        font-size:16px;
+    }
+    input:focus, textarea:focus, select:focus{
+        outline:none;
+        border-color:#2ecc71;
+        box-shadow:0 0 5px rgba(46,204,113,0.5);
+    }
+    button{
+        background-color:#27ae60;
+        color:white;
+        font-weight:bold;
+        border:none;
+        padding:12px;
+        border-radius:8px;
+        cursor:pointer;
+        transition:background 0.3s;
+        font-size:16px;
+    }
+    button:hover{background-color:#2ecc71;}
+
+    footer{
+        text-align:center;
+        padding:20px;
+        background-color:#27ae60;
+        color:white;
+        margin-top:40px;
+    }
+
+    .product-row{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        margin-bottom:10px;
+    }
+    .product-row input[type="number"]{width:70px;}
+    @media(max-width:600px){
+        .product-row{flex-direction:column; align-items:flex-start; gap:8px;}
+    }
+
+    #selectAllBtn{
+        background-color:#2ecc71; color:white;
+        padding:8px 12px; border:none; border-radius:5px;
+        cursor:pointer; margin-bottom:15px;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Roshan Food</h1>
+    <p>Kurkure, Murmure & Namkeen | Contact: 7037829170</p>
+</header>
+
+<nav>
+    <a href="#items">Items</a>
+    <a href="#order">Order</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section id="items">
+    <h2>Our Products</h2>
+    <div class="items">
+        <div class="item"><h3>Motu Patlu</h3><p>₹400</p></div>
+        <div class="item"><h3>Zoo</h3><p>₹400</p></div>
+        <div class="item"><h3>Katori</h3><p>₹400</p></div>
+        <div class="item"><h3>Pasta</h3><p>₹400</p></div>
+        <div class="item"><h3>Kurkura</h3><p>₹400</p></div>
+        <div class="item"><h3>Dal Chawal 5₹</h3><p>₹450</p></div>
+        <div class="item"><h3>Dal Chawal 1₹</h3><p>₹390</p></div>
+        <div class="item"><h3>Chand Ma Mhukda</h3><p>₹470</p></div>
+        <div class="item"><h3>Mackup Box</h3><p>₹470</p></div>
+        <div class="item"><h3>Zoo 5₹</h3><p>₹400</p></div>
+        <div class="item"><h3>Motu Patlu 5₹</h3><p>₹400</p></div>
+        <div class="item"><h3>Pola Plain</h3><p>₹290</p></div>
+        <div class="item"><h3>Pola Print</h3><p>₹290</p></div>
+        <div class="item"><h3>Veg Biryani</h3><p>₹470</p></div>
+        <div class="item"><h3>Dum Biryani</h3><p>₹470</p></div>
+        <div class="item"><h3>Aalu Kachori</h3><p>₹470</p></div>
+        <div class="item"><h3>Zakhass</h3><p>₹470</p></div>
+    </div>
+</section>
+
+<section id="order">
+    <h2>Place Your Order</h2>
+    <form id="orderForm">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="tel" name="phone" placeholder="Phone Number" required>
+        <textarea name="address" placeholder="Address" rows="3" required></textarea>
+
+        <h3>Select Products</h3>
+        <button type="button" id="selectAllBtn">Select All / Unselect All</button>
+
+        <!-- All products -->
+        <div class="product-row"><label><input type="checkbox" name="product" value="Motu Patlu"> Motu Patlu (₹400)</label><input type="number" name="quantity_Motu_Patlu" placeholder="Qty" min="0" value="0"></div>
+        <div class="product-row"><label><input type="checkbox" name="product" value="Zoo"> Zoo (₹400)</label><input type="number" name="quantity_Zoo" placeholder="Qty" min="0" value="0"></div>
+        <div class="product-row"><label><input type="checkbox" name="product" value="Katori"> Katori (₹400)</label><input type="number" name="quantity_Katori" placeholder="Qty" min="0" value="0"></div>
+        <div class="product-row"><label><input type="checkbox" name="product" value="Pasta"> Pasta (₹400)</label><input type="number" name="quantity_Pasta" placeholder="Qty" min="0" value="0"></div>
+        <div class="product-row"><label><input type="checkbox" name="product" value="Kurkura"> Kurkura (₹400)</label><input type="number" name="quantity_Kurkura" placeholder="Qty" min="0" value="0"></div>
+        <div class="product-row"><label><input type="checkbox" name="product" value="Dal Chawal 5₹"> Dal Chawal 5₹ (₹450)</label><input type="number" name="quantity_Dal_Chawal_5" placeholder="Qty" min="0" value="0"></div>
+        <div class="product-row"><label><input type="checkbox" name="product" value="Dal Chawal 1₹"> Dal Chawal 1₹ (₹390)</label><input type="number" name="quantity_Dal_Chawal_1" placeholder="Qty" min="0" value="0"></div>
+        <div class="product-row"><label><input type="checkbox" name="product" value="Chand Ma Mhukda"> Chand Ma Mhukda (₹470)</label><input type="number" name="quantity_Chand_Ma_Mhukda" placeholder="Qty" min="0" value="0"></div>
+        <div class="product-row"><label><input type="checkbox" name="product" value="Mackup Box"> Mackup Box (₹470)</label><input type="number" name="quantity_Mackup_Box" placeholder="Qty" min="0" value="0"></div>
+        <div class="product-row"><label><input type="checkbox" name="product" value="Zoo 5₹"> Zoo 5₹ (₹400)</label><input type="number" name="quantity_Zoo_5" placeholder="Qty" min="0" value="0"></div>
+        <div class="product-row"><label><input type="checkbox" name="product" value="Motu Patlu 5₹"> Motu Patlu 5₹ (₹400)</label><input type="number" name="quantity_Motu_Patlu_5" placeholder="Qty" min="0" value="0"></div>
+        <div class="product-row"><label><input type="checkbox" name="product" value="Pola Plain"> Pola Plain (₹290)</label><input type="number" name="quantity_Pola_Plain" placeholder="Qty" min="0" value="0"></div>
+        <div class="product-row"><label><input type="checkbox" name="product" value="Pola Print"> Pola Print (₹290)</label><input type="number" name="quantity_Pola_Print" placeholder="Qty" min="0" value="0"></div>
+        <div class="product-row"><label><input type="checkbox" name="product" value="Veg Biryani"> Veg Biryani (₹470)</label><input type="number" name="quantity_Veg_Biryani" placeholder="Qty" min="0" value="0"></div>
+        <div class="product-row"><label><input type="checkbox" name="product" value="Dum Biryani"> Dum Biryani (₹470)</label><input type="number" name="quantity_Dum_Biryani" placeholder="Qty" min="0" value="0"></div>
+        <div class="product-row"><label><input type="checkbox" name="product" value="Aalu Kachori"> Aalu Kachori (₹470)</label><input type="number" name="quantity_Aalu_Kachori" placeholder="Qty" min="0" value="0"></div>
+        <div class="product-row"><label><input type="checkbox" name="product" value="Zakhass"> Zakhass (₹470)</label><input type="number" name="quantity_Zakhass" placeholder="Qty" min="0" value="0"></div>
+
+        <button type="submit">Submit Order</button>
+    </form>
+</section>
+
+<section id="contact">
+    <h2>Contact Us</h2>
+    <p>Phone: 7037829170</p>
+    <form>
+        <input type="text" name="contact_name" placeholder="Your Name" required>
+        <input type="email" name="contact_email" placeholder="Your Email" required>
+        <textarea name="contact_message" placeholder="Your Message" rows="4" required></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+<footer>
+    &copy; 2025 Roshan Food. All Rights Reserved | Contact: 7037829170
+</footer>
+
+<script>
+const selectAllBtn = document.getElementById('selectAllBtn');
+let allSelected = false;
+selectAllBtn.addEventListener('click', () => {
+    const checkboxes = document.querySelectorAll('input[name="product"]');
+    allSelected = !allSelected;
+    checkboxes.forEach(cb => cb.checked = allSelected);
+});
+
+document.getElementById('orderForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = this.name.value;
+    const phone = this.phone.value;
+    const address = this.address.value;
+    const products = [];
+    const checkboxes = this.querySelectorAll('input[name="product"]');
+    checkboxes.forEach(cb=>{
+        if(cb.checked){
+            const qtyName='quantity_'+cb.value.replace(/\s+/g,'_').replace(/₹/g,'');
+            const qty = this[qtyName].value;
+            products.push(`${cb.value} x ${qty}`);
+        }
+    });
+    if(products.length===0){
+        alert('Please select at least one product!');
+        return;
+    }
+    alert(`Thank you ${name}! Your order has been received.\n\nProducts:\n${products.join('\n')}\n\nWe will contact you at ${phone}.`);
+    this.reset();
+});
+</script>
+
+</body>
+</html>
